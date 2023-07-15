@@ -19,13 +19,12 @@ public class Cab{
     @OneToOne(cascade = CascadeType.ALL)
     Driver driver;
 
-    public Cab(int perKmRate, boolean available, Driver driver){
-        this.perKmRate = perKmRate;
-        this.available = available;
-        this.driver = driver;
+    public int getId() {
+        return id;
     }
 
-    public Cab() {
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getPerKmRate() {
