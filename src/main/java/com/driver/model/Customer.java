@@ -1,36 +1,20 @@
 package com.driver.model;
 
-import com.sun.tools.javac.jvm.Gen;
-import org.hibernate.annotations.Cascade;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table
 public class Customer {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int customerId;
-
     private String mobile;
-
     private String password;
 
-    private List<TripBooking> tripBookingList;
-
-    public Customer() {
-    }
-
-    public Customer(int customerId, String mobile, String password, List<TripBooking> tripBookingList) {
-        this.customerId = customerId;
-        this.mobile = mobile;
-        this.password = password;
-        this.tripBookingList = tripBookingList;
-    }
+    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
+    private List<TripBooking> tripBookingList = new ArrayList<>();
 
     public int getCustomerId() {
         return customerId;

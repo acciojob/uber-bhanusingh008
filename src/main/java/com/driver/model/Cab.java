@@ -1,23 +1,19 @@
 package com.driver.model;
 
-import com.sun.tools.javac.jvm.Gen;
-import org.hibernate.annotations.Cascade;
-
 import javax.persistence.*;
 
 @Entity
-public class Cab{
-
+@Table
+public class Cab {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     private int perKmRate;
-
     private boolean available;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    Driver driver;
+    @OneToOne
+    @JoinColumn
+    private Driver driver;
 
     public int getId() {
         return id;
@@ -35,7 +31,7 @@ public class Cab{
         this.perKmRate = perKmRate;
     }
 
-    public boolean isAvailable() {
+    public boolean getAvailable() {
         return available;
     }
 
